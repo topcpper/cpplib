@@ -79,10 +79,8 @@ template <typename T>
 void bittree<T> :: preOrder()
 {
     if(pnode==NULL)
-    {
-        cout<<"null"<<endl;
         return ;
-    }
+    
     stack<Node<T>* > s;
     Node<T>*  ptemp ;
     s.push(pnode) ;
@@ -90,13 +88,10 @@ void bittree<T> :: preOrder()
     {
         ptemp = s.top() ;
         s.pop() ;
-        if(ptemp!=NULL)
-        {
-            cout<<ptemp->data <<endl;
-            if(ptemp->left) s.push(ptemp->left);
-            if(ptemp->right) s.push(ptemp->right);
-        }
-        
+        cout<<ptemp->data <<endl;
+        if(ptemp->right) s.push(ptemp->right);
+        if(ptemp->left) s.push(ptemp->left);
+    
     }
 }
 
@@ -111,13 +106,13 @@ int main(int arg ,char *arv[])
     node[0].isnull = 0;
 
     node[1].data = 2;
-    node[1].isnull = 1;
+    node[1].isnull = 0;
     node[2].data = 3;
     node[2].isnull = 0;
     node[3].data = 4;
     node[3].isnull = 1;
     node[4].data = 5;
-    node[4].isnull = 1;
+    node[4].isnull = 0;
     node[5].data = 6;
     node[5].isnull = 0;
     for(int i = 0 ; i< 6  ;i++)
@@ -126,6 +121,7 @@ int main(int arg ,char *arv[])
     bittree<int> tree ;
     tree.createBittree(vec);
     tree.preOrder();
+    
     
     
         
