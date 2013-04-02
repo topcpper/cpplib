@@ -1,0 +1,19 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BITTREE_H	bittree.h	2;"	d
+Node	bittree.h	/^struct Node$/;"	s
+bittree	bittree.h	/^     bittree ():pnode(NULL)$/;"	f	class:bittree
+bittree	bittree.h	/^class bittree$/;"	c
+createBittree	bittree.cpp	/^void bittree<T>:: createBittree( const vector<vectype<T> > &vec)$/;"	f	class:bittree
+data	bittree.h	/^     T data ;$/;"	m	struct:vectype
+data	bittree.h	/^     T data; \/* data  *\/$/;"	m	struct:Node
+isnull	bittree.h	/^     bool isnull ;$/;"	m	struct:vectype
+left	bittree.h	/^     Node * left ; \/* point to left *\/$/;"	m	struct:Node
+main	bittree.cpp	/^int main(int arg ,char *arv[])$/;"	f
+pnode	bittree.h	/^     Node<T> * pnode;$/;"	m	class:bittree
+right	bittree.h	/^     Node * right ; \/* point to right *\/$/;"	m	struct:Node
+vectype	bittree.h	/^struct vectype$/;"	s

@@ -9,38 +9,33 @@
 #include <iostream>
 #include "bittree.h"
 #include <queue>
+#include <stack>
+
 using namespace std;
 
 template<typename T>
 void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
 {
     typename vector< vectype<T> > :: const_iterator itert = vec.begin() ;
-    
-    
     if(itert == vec.end())
         return ;
-    queue<T> que;
-    string str ;
- 
     queue<Node<T> *> quep;
     
     pnode = new Node<T> ;
     Node<T> * ptemp ;
-    T data_temp;
+    ptemp = pnode ;
     
     pnode->data = (*itert).data ;
     pnode->left = NULL;
     pnode->right = NULL;
-    que.push((*itert).data);
+    
     quep.push(ptemp);
     itert ++ ;
+
     while( itert != vec.end() && !quep.empty())
     {
         ptemp = quep.front();
         quep.pop();
-
-        // data_temp = que.front() ;
-        // que.pop() ;
 
         if(ptemp == NULL)
         {
@@ -49,8 +44,7 @@ void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
             continue ;
         }
         
-        // not null
-        
+        // left data not null
         if((*itert).isnull == 0 )
         {
             ptemp->left = new Node<T>;
@@ -62,7 +56,7 @@ void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
         else
             ptemp->left = NULL ;
         quep.push(ptemp->left);
-        
+        // right data not null
         if(++itert == vec.end())
             break ;
         
@@ -81,8 +75,30 @@ void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
     }
 }
 
-
-
+template <typename T>
+void bittree<T> :: preOrder()
+{
+    if(pnode==NULL)
+    {
+        cout<<"null"<<endl;
+        return ;
+    }
+    stack<Node<T>* > s;
+    Node<T>*  ptemp ;
+    s.push(pnode) ;
+    while(!s.empty())
+    {
+        ptemp = s.top() ;
+        s.pop() ;
+        if(ptemp!=NULL)
+        {
+            cout<<ptemp->data <<endl;
+            if(ptemp->left) s.push(ptemp->left);
+            if(ptemp->right) s.push(ptemp->right);
+        }
+        
+    }
+}
 
 
 int main(int arg ,char *arv[])
@@ -94,19 +110,22 @@ int main(int arg ,char *arv[])
     node[0].data = 1;
     node[0].isnull = 0;
 
-    node[1].data = 0;
+    node[1].data = 2;
     node[1].isnull = 1;
     node[2].data = 3;
     node[2].isnull = 0;
-    node[3].data = 1;
+    node[3].data = 4;
     node[3].isnull = 1;
-    node[4].data = 1;
+    node[4].data = 5;
     node[4].isnull = 1;
-    node[5].data = 1;
+    node[5].data = 6;
     node[5].isnull = 0;
-
+    for(int i = 0 ; i< 6  ;i++)
+        vec.push_back(node[i]);
+    
     bittree<int> tree ;
     tree.createBittree(vec);
+    tree.preOrder();
     
     
         

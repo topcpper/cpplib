@@ -37,7 +37,7 @@ public:
       * vec can support flexible interface */
      void createBittree(const vector<vectype<T> > &vec);
      
-     /* void preOrder(bittree & tree); */
+     void preOrder();
      /* void preOrderR(bittree & tree); */
      /* void inOrder(bittree & tree); */
      /* void inOrderR(bittree & tree); */
