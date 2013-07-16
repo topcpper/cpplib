@@ -25,11 +25,11 @@ template<typename T>
 class bittree
 {
 private:
-     Node<T> * pnode;
+     Node<T> * proot;
 
 public:
      
-     bittree ():pnode(NULL)
+     bittree ():proot(NULL)
      {
      }
      
@@ -39,7 +39,10 @@ public:
      
      void preOrder();
      /* void preOrderR(bittree & tree); */
-     /* void inOrder(bittree & tree); */
+
+     /* 中序遍历，非递归 */
+     void inOrder();
+     
      /* void inOrderR(bittree & tree); */
      /* ~bittree(); */
      

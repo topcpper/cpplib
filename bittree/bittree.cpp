@@ -16,18 +16,20 @@ using namespace std;
 template<typename T>
 void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
 {
+    // the keyword typename is used ，来表明 vector < vectype<T> > :: const_iterator
+    // 是个类型，而不是对象
     typename vector< vectype<T> > :: const_iterator itert = vec.begin() ;
     if(itert == vec.end())
         return ;
     queue<Node<T> *> quep;
     
-    pnode = new Node<T> ;
+    proot = new Node<T> ;
     Node<T> * ptemp ;
-    ptemp = pnode ;
+    ptemp = proot ;
     
-    pnode->data = (*itert).data ;
-    pnode->left = NULL;
-    pnode->right = NULL;
+    proot->data = (*itert).data ;
+    proot->left = NULL;
+    proot->right = NULL;
     
     quep.push(ptemp);
     itert ++ ;
@@ -78,12 +80,12 @@ void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
 template <typename T>
 void bittree<T> :: preOrder()
 {
-    if(pnode==NULL)
+    if(proot==NULL)
         return ;
     
     stack<Node<T>* > s;
     Node<T>*  ptemp ;
-    s.push(pnode) ;
+    s.push(proot) ;
     while(!s.empty())
     {
         ptemp = s.top() ;
@@ -94,6 +96,32 @@ void bittree<T> :: preOrder()
     
     }
 }
+
+template <typename T>
+void bittree<T> :: inOrder()
+{
+    if(proot==NULL)
+        return ;
+    stack<Node<T>* > s;
+    Node<T>*  ptemp = proot ;
+    while(ptemp || !s.empty())
+    {
+        if(ptemp)
+        {
+            s.push(ptemp) ;
+            ptemp = ptemp->left;
+        }
+        else
+        {
+            ptemp= s.top();
+            s.pop() ;
+            cout<<ptemp->data <<endl;
+            ptemp = ptemp->right;
+        }
+    }
+    
+}
+
 
 
 int main(int arg ,char *arv[])
@@ -121,7 +149,7 @@ int main(int arg ,char *arv[])
     bittree<int> tree ;
     tree.createBittree(vec);
     tree.preOrder();
-    
+    tree.inOrder();
     
     
         
