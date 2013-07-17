@@ -24,7 +24,7 @@ struct vectype
 template<typename T>
 class bittree
 {
-private:
+public:
      Node<T> * proot;
 
 public:

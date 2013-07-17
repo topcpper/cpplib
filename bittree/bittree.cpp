@@ -97,6 +97,8 @@ void bittree<T> :: preOrder()
     }
 }
 
+
+
 template <typename T>
 void bittree<T> :: inOrder()
 {
@@ -122,6 +124,14 @@ void bittree<T> :: inOrder()
     
 }
 
+
+void tstatic()
+{
+    static int a = 0;
+    a++;
+    cout<<a<<endl;
+    
+}
 
 
 int main(int arg ,char *arv[])
@@ -150,7 +160,19 @@ int main(int arg ,char *arv[])
     tree.createBittree(vec);
     tree.preOrder();
     tree.inOrder();
+    cout<<"begin:"<<endl;
     
+    for(int i = 0 ; i<5 ; i++)
+        tstatic();
+    
+    cout<<"begin list:"<<endl;
+    Node<int> * head = bitree2list(tree.proot);
+    Node<int> * p =head;
+    while(p)
+    {
+        cout<<p->data<<endl;
+        p = p->right;
+    }
     
         
 }
