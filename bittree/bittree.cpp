@@ -10,6 +10,7 @@
 #include "bittree.h"
 #include <queue>
 #include <stack>
+#include <string>
 
 using namespace std;
 
