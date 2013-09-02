@@ -1,6 +1,6 @@
-search:32_number_of_1to_n.o
-	g++ -o numof1 32_number_of_1to_n.o
-32_number_of_1to_n.o:32_number_of_1to_n.cpp
-	g++ -c 32_number_of_1to_n.cpp
+search:36_invers_pairs.o
+	g++ -o inverse_pairs 36_invers_pairs.o
+36_invers_pairs.o:36_invers_pairs.cpp
+	g++ -c 36_invers_pairs.cpp
 clean:
 	rm *~ *.o
