@@ -174,6 +174,5 @@ int main(int arg ,char *arv[])
         cout<<p->data<<endl;
         p = p->right;
     }
-    
-        
+    string str;
 }
