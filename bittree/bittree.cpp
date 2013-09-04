@@ -10,8 +10,7 @@
 #include "bittree.h"
 #include <queue>
 #include <stack>
-
-using namespace std;
+#include <string>
 
 template<typename T>
 void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
@@ -173,6 +172,5 @@ int main(int arg ,char *arv[])
         cout<<p->data<<endl;
         p = p->right;
     }
-    
-        
+    string str;
 }
