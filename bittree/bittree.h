@@ -32,7 +32,7 @@ public:
      bittree ():proot(NULL)
      {
      }
-     
+         
      /* create the tree from vec
       * vec can support flexible interface */
      void createBittree(const vector<vectype<T> > &vec);

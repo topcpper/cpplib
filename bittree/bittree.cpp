@@ -12,6 +12,8 @@
 #include <stack>
 #include <string>
 
+using namespace std;
+
 template<typename T>
 void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
 {
