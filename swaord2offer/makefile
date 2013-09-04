@@ -7,7 +7,7 @@
 
 first_para:50_first_para.o bittree.o
 	g++ -o first_para 50_first_para.o bittree.o
-bittree.o:bittree.cpp bittree.h
+bittree.o:bittree.cpp
 	g++ -c bittree.cpp
 50_first_para.o:50_first_para.cpp bittree.h
 	g++ -c 50_first_para.cpp

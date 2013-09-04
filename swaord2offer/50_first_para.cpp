@@ -10,9 +10,6 @@
 #include "bittree.h"
 #include <vector>
 
-
-
-
 using namespace std;
 
 bool find_para(Node<int> * root,int f_data1,int f_data2,int data1,int data2,Node<int> * &ppara)

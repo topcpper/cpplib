@@ -68,7 +68,6 @@ void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
             ptemp->right = new Node<T>;
             ptemp->right->left =NULL ;
             ptemp->right->right = NULL ;
-            
             ptemp->right->data = (*itert).data;
         }
         else
