@@ -1,73 +1,31 @@
-#ifndef BITTREE_H
-#define BITTREE_H
-
-#include <vector>
+/*************************************************************
+*
+*bittree.cpp: it is my impletion of bittree
+*auther     : caowg
+*Written on : 04/01/13.
+*
+*************************************************************/
 #include <list>
 #include <iostream>
-#include "bittree.h"
+#include "bittree_int.h"
 #include <queue>
 #include <stack>
 #include <string>
 
 using namespace std;
 
-/* the node of the tree */
-template<typename T>
-struct Node
+
+void bittree:: createBittree( const vector<vectype > &vec)
 {
-     Node * left ; /* point to left */
-     Node * right ; /* point to right */
-     T data; /* data  */
-};
-
-/* the container type of the tempopary data array */
-template<typename T>
-struct vectype
-{
-     T data ;
-     bool isnull ;
-};
-
-
-template<typename T>
-class bittree
-{
-public:
-     Node<T> * proot;
-
-public:
-     
-     bittree ():proot(NULL)
-     {
-     }
-         
-     /* create the tree from vec
-      * vec can support flexible interface */
-     void createBittree(const vector<vectype<T> > &vec);
-
-     void preOrder();
-     /* void preOrderR(bittree & tree); */
-
-     /* 中序遍历，非递归 */
-     void inOrder();
-     
-     /* void inOrderR(bittree & tree); */
-     /* ~bittree(); */
-     
-};
-
-template<typename T>
-void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
-{
-    // the keyword typename is used ，来表明 vector < vectype<T> > :: const_iterator
+    // the keyword typename is used ，来表明 vector < vectype > :: const_iterator
     // 是个类型，而不是对象
-    typename vector< vectype<T> > :: const_iterator itert = vec.begin() ;
+     vector< vectype > :: const_iterator itert = vec.begin() ;
     if(itert == vec.end())
         return ;
-    queue<Node<T> *> quep;
+    queue<Node *> quep;
     
-    proot = new Node<T> ;
-    Node<T> * ptemp ;
+    proot = new Node ;
+    Node * ptemp ;
     ptemp = proot ;
     
     proot->data = (*itert).data ;
@@ -92,7 +50,7 @@ void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
         // left data not null
         if((*itert).isnull == 0 )
         {
-            ptemp->left = new Node<T>;
+            ptemp->left = new Node;
             ptemp->left->left=NULL ;
             ptemp->left->right=NULL ;
             
@@ -107,7 +65,7 @@ void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
         
         if((*itert).isnull == 0 )
         {
-            ptemp->right = new Node<T>;
+            ptemp->right = new Node;
             ptemp->right->left =NULL ;
             ptemp->right->right = NULL ;
             
@@ -120,14 +78,14 @@ void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
     }
 }
 
-template <typename T>
-void bittree<T> :: preOrder()
+
+void bittree :: preOrder()
 {
     if(proot==NULL)
         return ;
     
-    stack<Node<T>* > s;
-    Node<T>*  ptemp ;
+    stack<Node* > s;
+    Node*  ptemp ;
     s.push(proot) ;
     while(!s.empty())
     {
@@ -142,13 +100,13 @@ void bittree<T> :: preOrder()
 
 
 
-template <typename T>
-void bittree<T> :: inOrder()
+
+void bittree :: inOrder()
 {
     if(proot==NULL)
         return ;
-    stack<Node<T>* > s;
-    Node<T>*  ptemp = proot ;
+    stack<Node* > s;
+    Node*  ptemp = proot ;
     while(ptemp || !s.empty())
     {
         if(ptemp)
@@ -168,4 +126,10 @@ void bittree<T> :: inOrder()
 }
 
 
-#endif
+void tstatic()
+{
+    static int a = 0;
+    a++;
+    cout<<a<<endl;
+    
+}

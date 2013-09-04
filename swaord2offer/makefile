@@ -5,10 +5,8 @@
 # clean:
 # 	rm *~ *.o
 
-first_para:50_first_para.o bittree.o
-	g++ -o first_para 50_first_para.o bittree.o
-bittree.o:bittree.cpp
-	g++ -c bittree.cpp
+first_para:50_first_para.o
+	g++ -o first_para 50_first_para.o
 50_first_para.o:50_first_para.cpp bittree.h
 	g++ -c 50_first_para.cpp
 clean:
