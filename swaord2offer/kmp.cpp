@@ -39,6 +39,9 @@ int kmp_search(char*  source, char * pattern )
     next(pattern,next_loc);
     while(source[i]!='\0' && j!= length)
     {
+        // 如果source[i]!=pattern[0],j=-1，此时
+        // source要迁移以为然后和pattern[0]开始
+        // 比较
         if(source[i] == pattern[j] || j==-1)
         {
             i++;
