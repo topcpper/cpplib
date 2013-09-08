@@ -5,9 +5,9 @@
 # clean:
 # 	rm *~ *.o
 
-first_para:50_first_para.o
-	g++ -o first_para 50_first_para.o
-50_first_para.o:50_first_para.cpp bittree.h
-	g++ -c 50_first_para.cpp
+kmp:kmp.o
+	g++ -o kmp kmp.o
+kmp.o:kmp.cpp
+	g++ -c kmp.cpp
 clean:
 	rm *~ *.o
