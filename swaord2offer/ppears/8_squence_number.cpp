@@ -32,7 +32,6 @@ int find_min_to_number(int * array,int length ,int number)
     for (int i = 0; i < length; ++i)
     {
         sum = 0;
-        
         for (int j = i ; j < length; ++j)
         {
             sum += array[j];
@@ -66,7 +65,7 @@ int find_min_to_number(vector <int> & vec, int number)
         sum+= *it;
         vecsum.push_back(sum);
     }
-
+    vector<int> vecsum_un_sort(vecsum);
     sort(vecsum.begin(),vecsum.end());
 
     int approximation = 9999;
@@ -80,8 +79,8 @@ int find_min_to_number(vector <int> & vec, int number)
     vector<int>::iterator lend = it ;
     int temp;
     int steps;
-    
-    for (it ; it != vecsum.end(); ++it)
+    bool flag_equal = 0;
+    for (it ; it != vecsum.end() && flag_equal != 1; ++it)
     {
         itbegin = it;
         itend = vecsum.end();
@@ -93,16 +92,15 @@ int find_min_to_number(vector <int> & vec, int number)
             temp = *mid - *it -number;
             if(abs(temp)< abs(approximation))
             {
-                lbegin = itbegin;
+                lbegin = it;
                 lend = mid;
                 approximation = temp;
             }
             
             if(temp ==0)
             {
-                cout<<temp+number;
-                return 1;
-                
+                flag_equal = 1;
+                break;
             }
             else if (temp < 0)
                 itbegin = mid + 1;
@@ -111,6 +109,23 @@ int find_min_to_number(vector <int> & vec, int number)
         }
     }
     cout<<approximation+number<<endl;
+    itbegin = vecsum_un_sort.end();
+    itend = vecsum_un_sort.end();
+    for(it = vecsum_un_sort.begin() ; it != vecsum_un_sort.end() ; ++it)
+    {
+        if(itbegin != vecsum_un_sort.end() && itend != vecsum_un_sort.end())
+            break;
+        if(*it == *lbegin)
+            itbegin = it;
+        if(*it == *lend )
+            itend = it;
+    }
+    itbegin = vec.begin()+( itbegin - vecsum_un_sort.begin()) +1;
+    itend = vec.begin() + (itend - vecsum_un_sort.begin());
+
+    for(it = itbegin ;it != itend ; ++it)
+        cout<<*it<<" ";
+    cout<<*it<<endl;
 }
 
 
