@@ -59,24 +59,30 @@ int find_min_to_number(vector <int> & vec, int number)
     vector<int> vecsum;
     vector<int> ::iterator it = vec.begin();
     int sum = 0;
-    
+
+    // sum
     for (it ; it != vec.end(); ++it)
     {
         sum+= *it;
         vecsum.push_back(sum);
     }
+    // back_up
     vector<int> vecsum_un_sort(vecsum);
+    // sort
     sort(vecsum.begin(),vecsum.end());
 
+    // max
     int approximation = 9999;
 
     it = vecsum.begin();
     vector<int> ::iterator itend = vecsum.end();
     itend--;
-    vector<int>::iterator mid;
     vector<int>::iterator itbegin ;
+    vector<int>::iterator mid;
+
     vector<int>::iterator lbegin= it ;
     vector<int>::iterator lend = it ;
+
     int temp;
     int steps;
     bool flag_equal = 0;
@@ -109,6 +115,7 @@ int find_min_to_number(vector <int> & vec, int number)
         }
     }
     cout<<approximation+number<<endl;
+    // find the begin sum & end sum int the backup_sum
     itbegin = vecsum_un_sort.end();
     itend = vecsum_un_sort.end();
     for(it = vecsum_un_sort.begin() ; it != vecsum_un_sort.end() ; ++it)
@@ -120,9 +127,9 @@ int find_min_to_number(vector <int> & vec, int number)
         if(*it == *lend )
             itend = it;
     }
+    // print
     itbegin = vec.begin()+( itbegin - vecsum_un_sort.begin()) +1;
     itend = vec.begin() + (itend - vecsum_un_sort.begin());
-
     for(it = itbegin ;it != itend ; ++it)
         cout<<*it<<" ";
     cout<<*it<<endl;
