@@ -5,9 +5,9 @@
 # clean:
 # 	rm *~ *.o
 
-kmp:kmp.o
-	g++ -o kmp kmp.o
-kmp.o:kmp.cpp
-	g++ -c kmp.cpp
+rotate_str_split:rotate_str_split.o
+	g++ -o rotate_str_split rotate_str_split.o
+rotate_str_split.o:rotate_str_split.cpp
+	g++ -c rotate_str_split.cpp
 clean:
 	rm *~ *.o
