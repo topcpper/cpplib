@@ -24,8 +24,8 @@ struct line
 
 
 
-bool  _deal(line & temp, vector<string>vec[2] ,int& count ,
-            int vec_0_or_1,vector<string>::iterator& it)
+bool  _deal(line & temp, vector<string>vec[2] ,
+            int vec_0_or_1,vector<string>::iterator& it,int &count)
 {
     if(temp.str1 == *it)
     {
@@ -34,8 +34,9 @@ bool  _deal(line & temp, vector<string>vec[2] ,int& count ,
             return 0;
         else
         {
-            if((find(vec[1-vec_0_or_1].begin(),vec[1-vec_0_or_1].end(),temp.str2))
-                vec[vec_0_or_1].push_back(temp.str2);
+            if(find(vec[1-vec_0_or_1].begin(),vec[1-vec_0_or_1].end(),temp.str2)
+                == vec[1-vec_0_or_1].end())
+               vec[1-vec_0_or_1].push_back(temp.str2);
         }
         
         temp.mark =1;
@@ -43,16 +44,19 @@ bool  _deal(line & temp, vector<string>vec[2] ,int& count ,
     }
     else if(temp.str2 == *it)
     {
-        if(find(vec[0].begin(),vec[0].end(),temp.str2)!= vec[0].end()
-           || (find(vec[1].begin(),vec[1].end(),temp.str2)!= vec[1].end())
-            )
+        if(find(vec[vec_0_or_1].begin(),vec[vec_0_or_1].end(),temp.str1)
+           != vec[vec_0_or_1].end() )
             return 0;
         else
-            vec[vec_0_or_1].push_back(temp.str1);
+        {
+            if(find(vec[1-vec_0_or_1].begin(),vec[1-vec_0_or_1].end(),temp.str1)
+                == vec[1-vec_0_or_1].end())
+            vec[1-vec_0_or_1].push_back(temp.str1);
+        }
+        
         temp.mark =1;
         count++;
     }
-    it++;
     return 1;
 }
 
@@ -73,8 +77,8 @@ void print_data(vector<string> vecs[2])
 bool split_sucess(vector<line> & vecline)
 {
     vector<string> vecs[2];
-    vecs[0].reserve(100);
-    vecs[1].reserve(100);
+    vecs[0].reserve(200);
+    vecs[1].reserve(200);
     int count = 1;
     line temp;
     temp = *(vecline.begin());
@@ -86,45 +90,69 @@ bool split_sucess(vector<line> & vecline)
     vector<string>::iterator itb = vecs[1].begin();
     bool veca_turn = 1;
     bool vecb_turn = 0;
-    while(count!=vecline.size())
+    int i;
+    
+    while(count < vecline.size())
     {
-        if(vecline[count].mark ==0 && ita!= vecs[0].end() && veca_turn ==1)
+//        cout<<"count:"<<count<<endl;
+        
+        if(veca_turn == 1)
         {
-            if(_deal(vecline[count],vecs,count,0,ita)==0)
+            for (ita;  ita != vecs[0].end(); )
             {
-                print_data(vecs);
-                return 0;
+                for ( i = 0; i < vecline.size(); ++i)
+                {
+                    if(vecline[i].mark == 1)
+                        continue;
+                    if(_deal(vecline[i],vecs,0,ita,count)==0)
+                    {
+//                print_data(vecs);
+                        return 0;
+                    }
+
+                }
+                ++ita;
             }
-            
-        }
-        if(ita == vecs[0].end())
-        {
             veca_turn = 0;
             vecb_turn = 1;
         }
-        
-        if(vecline[count].mark ==0 && itb!= vecs[1].end() && vecb_turn == 1)
+
+        if(vecb_turn == 1)
         {
-            if(_deal(vecline[count],vecs,count,1,itb)==0)
+            for (itb;  itb != vecs[1].end(); )
             {
-                print_data(vecs);
-                return 0;
+                for ( i = 0; i < vecline.size(); ++i)
+                {
+                    if(vecline[i].mark == 1)
+                        continue;
+                    if(_deal(vecline[i],vecs,1,itb,count)==0)
+                    {
+//                print_data(vecs);
+                        return 0;
+                    }
+
+                }
+                ++itb;
             }
-            
-        }
-        if(itb == vecs[1].end())
-        {
             veca_turn = 1;
-            vecb_turn = 0 ;
+            vecb_turn = 0;
         }
+        
         if(ita == vecs[0].end() && itb == vecs[1].end())
         {
-            vecs[0].push_back(vecline[count].str1);
-            vecs[1].push_back(vecline[count].str2);
-            vecline[count].mark = 1;
-            count++;
+            for ( i = 0; i < vecline.size(); ++i)
+            {
+                if(vecline[i].mark == 1)
+                    continue;
+                vecs[0].push_back(vecline[i].str1);
+                vecs[1].push_back(vecline[i].str2);
+                vecline[i].mark = 1;
+                count++;
+                break;
+            }
         }
-    }
+    }//endwhile
+//    print_data(vecs);
     return 1;
 }
 
@@ -138,13 +166,17 @@ int main(int arg ,char *arv[])
 
     ifstream ifile;
     ifile.open(inputfile.c_str());
+
+    ofstream ofile;
+    ofile.open(outputfile.c_str());
+    
     
     int case_num ;
     ifile>>case_num;
     int lines;
 
     vector<line> vecline;
-    vecline.reserve(100);
+    vecline.reserve(200);
     
     
     int line_number =0;
@@ -164,8 +196,8 @@ int main(int arg ,char *arv[])
             line_number++;
         }
         if(split_sucess(vecline))
-            cout<<"Case #"<<i<<":Yes"<<endl;
+            ofile<<"Case #"<<i+1<<": Yes"<<endl;
         else
-            cout<<"Case #"<<i<<":No"<<endl;
+            ofile<<"Case #"<<i+1<<": No"<<endl;
     }
 }
