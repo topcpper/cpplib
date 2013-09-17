@@ -1,3 +1,11 @@
+/*************************************************************
+*
+*bittree.H  : the impletetion of bi tree
+*auther     : caowg
+*Written on : 05/04/13.
+*
+*************************************************************/
+
 #ifndef BITTREE_H
 #define BITTREE_H
 
