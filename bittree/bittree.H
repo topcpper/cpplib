@@ -4,7 +4,6 @@
 #include <vector>
 #include <list>
 #include <iostream>
-#include "bittree.h"
 #include <queue>
 #include <stack>
 #include <string>
@@ -34,8 +33,6 @@ class bittree
 {
 public:
      Node<T> * proot;
-
-public:
      
      bittree ():proot(NULL)
      {
@@ -53,6 +50,17 @@ public:
      
      /* void inOrderR(bittree & tree); */
      /* ~bittree(); */
+
+     /*获取层数 非递归 */
+     int get_level();
+
+     /* 层数递归 */
+     int get_level_r();
+     
+     
+private:
+    int _get_level_r(const Node<T> * const root);
+
      
 };
 
@@ -101,6 +109,7 @@ void bittree<T>:: createBittree( const vector<vectype<T> > &vec)
         else
             ptemp->left = NULL ;
         quep.push(ptemp->left);
+
         // right data not null
         if(++itert == vec.end())
             break ;
@@ -166,6 +175,53 @@ void bittree<T> :: inOrder()
     }
     
 }
+
+template <typename T>
+int bittree<T>::get_level()
+{
+    if(proot==NULL)
+        return 0;
+    int level=0;
+    queue< Node<T>* > que;
+    que.push(proot);
+    Node<T> * last = proot;
+    Node<T> * pcur = proot;
+    while(!que.empty())
+    {
+        pcur = que.front();
+        que.pop();
+        if(pcur->left)
+            que.push(pcur->left);
+        if(pcur->right)
+            que.push(pcur->right);
+        if(pcur == last)
+        {
+            level++;
+            last = que.back();
+        }
+    }
+    return level;
+}
+
+template <typename T>
+int bittree<T>::_get_level_r(const Node<T> * const root)
+{
+    int l=0;
+    int r=0;
+    if(!root)
+        return 0;
+    l = _get_level_r(root->left);
+    r = _get_level_r(root->right);
+    return l>r ? (l+1) :(r+1);
+}
+
+template <typename T>
+int bittree<T>::get_level_r()
+{
+    return _get_level_r(proot);
+}
+
+
 
 
 #endif

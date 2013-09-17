@@ -125,6 +125,33 @@ void bittree<T> :: inOrder()
     
 }
 
+template <typename T>
+int bittree<T>::get_level()
+{
+    if(proot==NULL)
+        return 0;
+    int level;
+    queue< Node<T>* > que;
+    que.push(proot);
+    Node<T> * last = proot;
+    Node<T> * pcur = proot;
+    while(!que.empty())
+    {
+        pcur = que.front();
+        que.pop();
+        if(pcur->left)
+            que.push(pcur->left);
+        if(pcur->right)
+            que.push(pcur->right);
+        if(que == last)
+        {
+            level++;
+            last = que.back();
+        }
+    }
+    return level;
+}
+
 
 void tstatic()
 {

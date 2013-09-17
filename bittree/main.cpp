@@ -7,7 +7,9 @@
 *************************************************************/
 
 #include <iostream>
-#include "bittree.h"
+#include <vector>
+
+#include "bittree.H"
 
 using namespace std;
 
@@ -48,4 +50,7 @@ int main(int arg ,char *arv[])
     //     p = p->right;
     // }
     // string str;
+    cout<<"level:"<<tree.get_level()<<endl;
+    cout<<"level:"<<tree.get_level_r()<<endl;
+    
 }
