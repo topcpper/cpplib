@@ -5,9 +5,9 @@
 # clean:
 # 	rm *~ *.o
 
-rotate_str_split:rotate_str_split.o
-	g++ -o rotate_str_split rotate_str_split.o
-rotate_str_split.o:rotate_str_split.cpp
-	g++ -c rotate_str_split.cpp
+heap_sort:heap_sort.o
+	g++ -o heap_sort heap_sort.o
+heap_sort.o:heap_sort.cpp
+	g++ -c heap_sort.cpp
 clean:
 	rm *~ *.o
