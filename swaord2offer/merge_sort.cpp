@@ -1,6 +1,6 @@
 /*************************************************************
 *
-*merge_sort.cpp: merge_sort
+*qsort.cpp: qsort
 *auther     : caowg
 *Written on : 08/29/13.
 *
@@ -47,13 +47,13 @@ int partition(int * array ,int low, int high)
     return low;
 }
 
-void my_merge_sort(int * array ,int low ,int high)
+void my_qsort(int * array ,int low ,int high)
 {
      if( low < high)
     {
         int index = partition(array,low,high);
-        my_merge_sort(array,low, index-1);
-        my_merge_sort(array,index+1,high);
+        my_qsort(array,low, index-1);
+        my_qsort(array,index+1,high);
     }
 }
 
@@ -73,7 +73,7 @@ int main(int arg ,char *arv[])
         cout<<array[i]<<" ";
     }
     cout<<endl;
-    my_merge_sort(array,0,9);
+    my_qsort(array,0,9);
     for (int i = 0; i < 10; ++i)
     {
         cout<<array[i]<<" ";
