@@ -15,7 +15,7 @@ double square_root(double n,double accuracy)
     double begin = 0;
     double end = n;
     double mid =(begin+end)/2;
-    double lastmid=1;
+    double lastmid=9;
     while(lastmid -mid > accuracy || mid -lastmid > accuracy)
     {
         lastmid = mid;
@@ -53,12 +53,12 @@ double square_root1(double n,double accuracy)
 
 int main(int arg ,char *arv[])
 {
-    for (int i = 5; i < 10; ++i)
+    for (int i = 1; i < 10; ++i)
     {
         cout<<i<<" "<<square_root(i,0.0001)<<endl;
     }
 
-    for (int i = 5; i < 10; ++i)
+    for (int i = 1; i < 10; ++i)
     {
         cout<<i<<" "<<square_root1(i,0.0001)<<endl;
     }
