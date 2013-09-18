@@ -5,9 +5,9 @@
 # clean:
 # 	rm *~ *.o
 
-heap_sort:heap_sort.o
-	g++ -o heap_sort heap_sort.o
-heap_sort.o:heap_sort.cpp
-	g++ -c heap_sort.cpp
+square_root:square_root.o
+	g++ -o square_root square_root.o
+square_root.o:square_root.cpp
+	g++ -c square_root.cpp
 clean:
 	rm *~ *.o
