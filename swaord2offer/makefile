@@ -5,9 +5,9 @@
 # clean:
 # 	rm *~ *.o
 
-square_root:square_root.o
-	g++ -o square_root square_root.o
-square_root.o:square_root.cpp
-	g++ -c square_root.cpp
+whole_Permutation:whole_Permutation.o
+	g++ -o whole_Permutation whole_Permutation.o
+whole_Permutation.o:whole_Permutation.cpp
+	g++ -c whole_Permutation.cpp
 clean:
 	rm *~ *.o
